@@ -17,7 +17,7 @@ An agent-based model can be build with the following ingredients:
 *	__A set of rules__ that determines what every agent is allowed or has to do
 * __A loop__, which allows to repeatedly act or interact
 
-Here we consider two agents playing a simple game: Rock, Paper, Scissors
+Here we consider two agents playing a simple game: __Rock, Paper, Scissors__
 
 ## Rock Paper Scissors, simple
 At first we need to create our agents
@@ -42,7 +42,6 @@ chooseStrategy <- function(ind){
 ### Second: Individuals play their strategies
 ```{r}
 playStrategy <- function(ind){
-		c("Paper","Scissors","Rock")
 		if(ind$strategy[1]==ind$strategy[2]) {} else{
 			#in the case that one chose Rock and the other paper:
 			if(any(ind$strategy == 3) && any(ind$strategy == 1)){ 
@@ -61,11 +60,11 @@ playStrategy <- function(ind){
 ### Third: Let's loop it
 ```{r}
 # indDF <- setup()
-# for(i in 1:1000){
+for(i in 1:1000){
 	indDF <- chooseStrategy(indDF)#; indDF
 	indDF <- playStrategy(indDF)#; indDF
-	# i <- i+1
-	# }#;indDF
+	i <- i+1
+	};indDF
 ```
 
 At some point it might be handy to have a function for initializing the game
@@ -92,8 +91,8 @@ for(i in 1:rounds){
 
 And now we can plot the data to see what happened.
 ```{r}
-plot(dat[,1], type='l', col='green', lwd=3, xlab='time', ylab='number of rounds won')
-lines(dat[,2], col='blue', lwd=3)
+plot(dat[,1], type='l', col='#EA2E49', lwd=3, xlab='time', ylab='number of rounds won')
+lines(dat[,2], col='#77C4D3', lwd=3)
 ```
 
 Alright, and now it becomes interesting. Now, we have a running model and we can start to test a hypothesis. For instance: is a player that never switches it's strategy more successful?
@@ -108,7 +107,7 @@ chooseStrategy2 <- function(ind){
 ```
 Now, the second individual will change its strategy, while the first chooses a strategy once and then sticks with it. 
 ```{r}
-rounds <- 100
+rounds <- 1000
 repetitions <- 100
 dat <- matrix(NA, rounds, 2)
 res2 <- c()
@@ -125,14 +124,13 @@ for(j in 1:repetitions){
 		j <- j+1
 }
 
-plot(dat[,1], type='l', col='green', lwd=3, xlab='time', ylab='number of rounds won')
-lines(dat[,2], col='blue', lwd=3)
+plot(dat[,1], type='l', col='blue', lwd=3, xlab='time', ylab='number of rounds won')
+lines(dat[,2], col='red', lwd=3)
 
 # for comparisson let's calculate the winning vector for both players switch strategies:
 res1 <- c()
 for(j in 1:repetitions){
 	indDF <- setup()
-	indDF[1,"strategy"] <- sample(1:3,1)
 	for(i in 1:rounds){
 		indDF <- chooseStrategy(indDF)
 		indDF <- playStrategy(indDF)
@@ -157,7 +155,6 @@ In this second example we are going to use the same game, but this time several 
 require(igraph)
 require(reshape)
 require(ggplot2)
-require(rgl)
 ```
 
 
@@ -178,7 +175,7 @@ V(l)[weapon==3]$color<-'green' # Rock
 # and this is what it looks like:
 plot(l, layout=as.matrix(expand.grid(1:sidelength, 1:sidelength)), vertex.label=NA)
 
-for(t in 1:100){
+for(t in 1:2500){
 	# pick a random agent ...
 	from <- as.numeric(sample(V(l), 1)) # or sample(sidelength^2,1)
 	# who are its neighbours?
@@ -210,7 +207,7 @@ for(t in 1:100){
 	}
 	# let's record the individual abundance of each strategy
 	stat<-rbind(stat, c(sum(V(l)$'weapon'=="1"), sum(V(l)$'weapon'=="2"), sum(V(l)$'weapon'=="3")))
-	plot(l, layout=as.matrix(expand.grid(1:sidelength, 1:sidelength)), vertex.label=NA)
+	# plot(l, layout=as.matrix(expand.grid(1:sidelength, 1:sidelength)), vertex.label=NA)
 }
 
 names(stat)<-c("Paper","Scissors","Rock")
@@ -240,7 +237,7 @@ V(l)[weapon==2.9]$color<-'purple' # Spock
 # and this is what it looks like:
 plot(l, layout=as.matrix(expand.grid(1:sidelength, 1:sidelength)), vertex.label=NA)
 
-for(t in 1:100){
+for(t in 1:2500){
 	# pick a random agent ...
 	from <- as.numeric(sample(V(l), 1)) # or sample(sidelength^2,1)
 	# who are its neighbours?
