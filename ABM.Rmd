@@ -175,7 +175,7 @@ V(l)[weapon==3]$color<-'green' # Rock
 # and this is what it looks like:
 plot(l, layout=as.matrix(expand.grid(1:sidelength, 1:sidelength)), vertex.label=NA)
 
-for(t in 1:2500){
+for(t in 1:1000){
 	# pick a random agent ...
 	from <- as.numeric(sample(V(l), 1)) # or sample(sidelength^2,1)
 	# who are its neighbours?
@@ -237,7 +237,7 @@ V(l)[weapon==2.9]$color<-'purple' # Spock
 # and this is what it looks like:
 plot(l, layout=as.matrix(expand.grid(1:sidelength, 1:sidelength)), vertex.label=NA)
 
-for(t in 1:2500){
+for(t in 1:1000){
 	# pick a random agent ...
 	from <- as.numeric(sample(V(l), 1)) # or sample(sidelength^2,1)
 	# who are its neighbours?
