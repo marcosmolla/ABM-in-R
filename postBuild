@@ -1,2 +1,5 @@
+pip install sos
+pip install sos-notebook
+pip install sos-r
+pip install sos-julia
 python3 -m sos_notebook.install
-
