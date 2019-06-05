@@ -1,0 +1,11 @@
+dependencies:
+  - matplotlib
+  - numpy
+  - pip
+  - pip:
+      - feather-format
+      - julia
+      - xlrd
+      - openpyxl
+      - sos
+      - sos-notebook
